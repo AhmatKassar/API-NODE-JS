@@ -5,16 +5,13 @@ const {validationResult} = require('express-validator');
 
 exports.register = async (req, res, next)=> {
     
-    
     try {
         const errors = validationResult(req);
-
         if(!errors.isEmpty())
         {
             const error = new Error('Erreur de validation, verifiez vos entrées');
             error.custom_status=422;
             error.data=errors.array();
-
             throw error;
         }
         const { email, password } = req.body;
@@ -43,17 +40,13 @@ exports.register = async (req, res, next)=> {
 };
 
 exports.login = async (req, res, next)=> {
-    
-    
     try {
         const errors = validationResult(req);
-
     if(!errors.isEmpty())
     {
         const error = new Error('Erreur de validation, verifiez vos entrées');
         error.custom_status=422;
         error.data=errors.array();
-
         throw error;
     }
         const { email, password } = req.body;
@@ -70,7 +63,6 @@ exports.login = async (req, res, next)=> {
         error.custom_status=401;
         throw error;
     }
-
     const token = jwt.sign({ userId: user._id.toString(), email: user.email }, 'ma_cle_prive', {expiresIn: "3h"});
     res.status(200).json({
         message: "Connexion effectuée avec succès",

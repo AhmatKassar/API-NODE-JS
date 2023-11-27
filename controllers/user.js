@@ -1,7 +1,5 @@
 const User = require('../models/User');
-
 exports.getUsers = async (req, res, next)=> {
-    
     try {
         const user = await User.find({}, '-password');
         if(!user)

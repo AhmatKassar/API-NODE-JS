@@ -16,7 +16,3 @@ app.use(userRoutes);
 getError(app);
 
 app.listen(process.env.PORT, () => console.log("Le serveur a démarré au port  " + process.env.PORT));
-
-
-
-

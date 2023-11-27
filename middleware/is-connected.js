@@ -5,14 +5,10 @@ module.exports = (req, res, next)=>{
     if(!checkAuthorizationHeader){
         const error = new Error("Vous n'êtes pas connecté, veuillez-vous identifier!");
         error.status_Code=401;
-
         throw error;
     }
-
     const token = checkAuthorizationHeader;
-
     let decodedToken;
-
     try {
         decodedToken = jwt.verify(token, 'ma_cle_prive');
       } catch (error) {
@@ -20,11 +16,9 @@ module.exports = (req, res, next)=>{
         error.status_Code=401;
         throw error;
       }
-
     if(!decodedToken){
         const error = new Error("Echec de la connexion!");
         error.status_Code=401;
-
         throw error;
     }
     req.userId = decodedToken.userId;
