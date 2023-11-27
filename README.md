@@ -5,7 +5,7 @@ PORT=numero_port
 #pour lancer l'application merci d'exécuter ces commandes :
 -npm install
 -npm start
-#pour s'inscrire vous devez utiliser la route /register qui attend en POST un email et password
-#pour se connecter vous devez utiliser la route /login qui attend en POST un email et password
-#pour voire la liste des utilisateurs vous devez utiliser la route /users en GET qui attend en header la variable AUthorization qui contient le token
+#pour s'inscrire vous devez utiliser la route http://localhost:3001/register qui attend en POST un email et password
+#pour se connecter vous devez utiliser la route http://localhost:3001/login qui attend en POST un email et password
+#pour voire la liste des utilisateurs vous devez utiliser la route http://localhost:3001/users en GET qui attend en header la variable AUthorization qui contient le token
 #vous pouvez trouver dans le dossier capture les instructions en image
