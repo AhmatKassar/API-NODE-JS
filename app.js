@@ -9,10 +9,12 @@ const userRoutes = require('./routes/user');
 
 connectDB();
 const app = express();
-app.use(bodyParser.json());
-getAccess(app);
-app.use(authRoutes);
-app.use(userRoutes);
-getError(app);
+
+app.use(bodyParser.json())
+    .use(getAccess)
+    .use(authRoutes)
+    .use(userRoutes)
+    .use(getError);
+
 
 app.listen(process.env.PORT, () => console.log("Le serveur a démarré au port  " + process.env.PORT));
