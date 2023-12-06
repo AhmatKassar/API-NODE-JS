@@ -1,13 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const connectDB = require("./config/db");
+require("dotenv").config({path: './config/.env'});
+require("./config/db");
 const getError = require("./config/error");
 const getAccess = require("./config/security");
-const dotenv = require("dotenv").config();
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 
-connectDB();
+
 const app = express();
 
 app.use(bodyParser.json())
@@ -15,6 +15,5 @@ app.use(bodyParser.json())
     .use(authRoutes)
     .use(userRoutes)
     .use(getError);
-
 
 app.listen(process.env.PORT, () => console.log("Le serveur a démarré au port  " + process.env.PORT));

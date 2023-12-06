@@ -63,14 +63,17 @@ exports.login = async (req, res, next)=> {
             error.custom_status=401;
             throw error;
         }
-        const token = jwt.sign({ userId: user._id.toString(), email: user.email }, 'ma_cle_prive', {expiresIn: "3h"});
+        const { password: userPassword, ...userWithoutPassword } = user.toObject();
+
+        const token = jwt.sign({ userId: user._id.toString(), email: user.email }, process.env.CLE_PRIVE, {expiresIn: "3h"});
         res.status(200).json({
             message: "Connexion effectuée avec succès",
             token: token,
-            user: user
+            user: userWithoutPassword
         });
     } catch (err) {
         next(err);
     }
     next();
 };
+

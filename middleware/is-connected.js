@@ -10,7 +10,7 @@ module.exports = (req, res, next)=>{
     const token = checkAuthorizationHeader;
     let decodedToken;
     try {
-        decodedToken = jwt.verify(token, 'ma_cle_prive');
+        decodedToken = jwt.verify(token, process.env.CLE_PRIVE);
       } catch (error) {
         error.message ="Echec de la connexion, token invalide!";
         error.status_Code=401;
